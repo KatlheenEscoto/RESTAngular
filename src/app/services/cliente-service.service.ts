@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Cliente } from '../models/cliente';
 import { CLIENTES } from '../pages/cliente/cliente.json';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,11 @@ export class ClienteServiceService {
   // Retornar clientes desde el .ts
   public getTSClientes(): Cliente[] {
     return CLIENTES;
+  }
+
+  // Patrón observable.
+  public getClientesObservable(): Observable<Cliente[]> {
+    return of(CLIENTES);
   }
 
 }

@@ -25,8 +25,14 @@ export class ClienteComponent implements OnInit {
     // Consumiendo desde un .json
     this.clientesService.getJSONClientes().subscribe( (respuesta) => {
       this.clientesJSON = respuesta as Cliente[];
-      this.clientes = this.clientesJSON;
+      //this.clientes = this.clientesJSON;
     });
+
+    // Consumiendo .ts de un observable.
+    this.clientesService.getClientesObservable().subscribe(
+      respuesta => this.clientes = respuesta
+    );
+
   }
 
 
