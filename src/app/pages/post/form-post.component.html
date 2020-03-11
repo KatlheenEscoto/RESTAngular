@@ -1,0 +1,39 @@
+<div class="card">
+    <h5 class="card-header">Crear Post</h5>
+    <div class="card-body">
+      <h5 class="card-title">{{title}}</h5>
+
+      <form (ngSubmit)="create()">
+          <div class="form-group row">
+              <label for="userId" class="class-form-label col-2">Usuario (ID):</label>
+              <div class="col-2">
+                    <input type="number" class="form-control" min="1" [(ngModel)]="post.userId" name="userId">
+              </div>
+          </div>
+          <div class="form-group row">
+            <label for="id" class="class-form-label col-2">ID:</label>
+            <div class="col-2">
+                  <input type="number" class="form-control" min="1" [(ngModel)]="post.id" name="id">
+            </div>
+            </div>
+            <div class="form-group row">
+                <label for="title" class="class-form-label col-2">Título:</label>
+                <div class="col-6">
+                    <input type="text" class="form-control" [(ngModel)]="post.title"  name="title">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="body" class="class-form-label col-2">Contenido:</label>
+                <div class="col-8">
+                    <input type="text" class="form-control" [(ngModel)]="post.body" name="body"> 
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-6">
+                    <button class="btn btn-primary" role="button">Crear</button>
+                </div>
+            </div>
+      </form>
+
+    </div>
+</div>
