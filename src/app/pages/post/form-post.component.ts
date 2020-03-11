@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../../models/post';
+import { PostService } from '../../services/post.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-post',
@@ -11,13 +13,19 @@ export class FormPostComponent implements OnInit {
   title = 'Rellena todos los campos.';
   post: Post = new Post();
 
-  constructor() { }
+  constructor(private postService: PostService,
+              private router: Router) { }
 
   ngOnInit(): void {
   }
 
   public create() {
-    console.log('Clicked!');
-    console.log(this.post);
+    // Método create.
+    this.postService.postPost(this.post).subscribe(
+      response => {
+        // Navegando a otra pagina desde el componente.
+        this.router.navigate(['/posts']);
+      }
+    );
   }
 }
