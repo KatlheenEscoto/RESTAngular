@@ -4,6 +4,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { ClienteComponent } from './pages/cliente/cliente.component';
 import { PostComponent } from './pages/post/post.component';
 import { FormPostComponent } from './pages/post/form-post.component';
+import { ClienteRestComponent } from './pages/cliente-rest/cliente-rest.component';
+import { FormClienteComponent } from './pages/cliente-rest/form-cliente.component';
 
 
 const routes: Routes = [
@@ -14,6 +16,14 @@ const routes: Routes = [
   {
     path: 'clientes',
     component: ClienteComponent
+  },
+  {
+    path: 'clientes_rest',
+    component: ClienteRestComponent
+  },
+  {
+    path: 'clientes_rest/form',
+    component: FormClienteComponent
   },
   {
     path: 'posts',

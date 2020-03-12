@@ -12,6 +12,8 @@ import { ClienteComponent } from './pages/cliente/cliente.component';
 import { HomeComponent } from './pages/home/home.component';
 import { PostComponent } from './pages/post/post.component';
 import { FormPostComponent } from './pages/post/form-post.component';
+import { ClienteRestComponent } from './pages/cliente-rest/cliente-rest.component';
+import { FormClienteComponent } from './pages/cliente-rest/form-cliente.component';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { FormPostComponent } from './pages/post/form-post.component';
     ClienteComponent,
     HomeComponent,
     PostComponent,
-    FormPostComponent
+    FormPostComponent,
+    ClienteRestComponent,
+    FormClienteComponent
   ],
   imports: [
     BrowserModule,
