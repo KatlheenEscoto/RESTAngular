@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from '../../models/cliente';
 import { ClienteRestService } from '../../services/cliente-rest.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert2';
 
 @Component({
@@ -15,25 +15,54 @@ export class FormClienteComponent implements OnInit {
   cliente: Cliente = new Cliente();
 
   constructor(private clienteService: ClienteRestService,
-              private router: Router) { }
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.cargarDatos();
+  }
+
+  public cargarDatos(): void {
+    this.route.params.subscribe(
+      parametros => {
+        let id = parametros['id'];
+        if (id) {
+          this.clienteService.getCliente(id).subscribe(
+            respuesta => {
+              if (respuesta != null){
+                this.cliente = respuesta;
+              }
+            }
+          );
+        }
+      }
+    );
   }
 
   public create(): void {
-    console.log('Haz hecho clicked!');
-    /*this.clienteService.postCliente(this.cliente).subscribe(
+    this.clienteService.postCliente(this.cliente).subscribe(
       (response: Cliente) => {
-        console.log(`El cliente ${response.nombre} ha sido creado con éxito.`);
         this.router.navigate(['/clientes_rest']);
+        swal.fire(
+          '¡Nuevo cliente creado!',
+          `El cliente ${response.nombre} ha sido creado con éxito.`,
+          'success'
+        );
       }
-    );*/
-    swal.fire(
-      'Good job!',
-      'You clicked the button!',
-      'success'
     );
-
   }
 
+  public update(): void {
+    this.clienteService.putCliente(this.cliente).subscribe(
+      respuesta => {
+        this.router.navigate(['/clientes_rest']);
+        swal.fire(
+          '¡Cliente editado!',
+          `El cliente ${this.cliente.nombre} ha sido editado con exito`,
+          'success'
+
+        );
+      }
+    );
+  }
 }

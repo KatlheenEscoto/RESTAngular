@@ -9,7 +9,8 @@ import { Cliente } from '../models/cliente';
 export class ClienteRestService {
 
   private urlClientes = 'http://127.0.0.1:8080/clientes';
-  private httpHeders = new HttpHeaders({'Content-Type':'application/json'});
+  private urlCliente = 'http://127.0.0.1:8080/cliente';
+  private httpHeaders = new HttpHeaders({'Content-Type':'application/json'});
 
   constructor(private http: HttpClient) {}
 
@@ -20,7 +21,17 @@ export class ClienteRestService {
 
   // POST.
   public postCliente(cliente: Cliente): Observable<Cliente> {
-    return this.http.post<Cliente>(this.urlClientes, cliente, {headers: this.httpHeders});
+    return this.http.post<Cliente>(this.urlClientes, cliente, {headers: this.httpHeaders});
+  }
+
+  // GET by ID.
+  public getCliente(id): Observable<Cliente> {
+    return this.http.get<Cliente>(`${this.urlCliente}/${id}`);
+  }
+
+  // PUT.
+  public putCliente(cliente: Cliente): Observable<Cliente> {
+    return this.http.put<Cliente>(`${this.urlCliente}/${cliente.id}`, cliente, {headers: this.httpHeaders});
   }
 
 }
