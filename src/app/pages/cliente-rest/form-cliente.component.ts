@@ -60,7 +60,6 @@ export class FormClienteComponent implements OnInit {
           '¡Cliente editado!',
           `El cliente ${this.cliente.nombre} ha sido editado con exito`,
           'success'
-
         );
       }
     );

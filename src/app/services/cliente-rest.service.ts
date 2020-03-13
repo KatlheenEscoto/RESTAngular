@@ -34,4 +34,9 @@ export class ClienteRestService {
     return this.http.put<Cliente>(`${this.urlCliente}/${cliente.id}`, cliente, {headers: this.httpHeaders});
   }
 
+  // DELETE.
+  public deleteCliente(id): Observable<Cliente> {
+    return this.http.delete<Cliente>(`${this.urlCliente}/${id}`, {headers: this.httpHeaders});s
+  }
+
 }

@@ -27,6 +27,7 @@
             <td>{{c.email}}</td>
             <td>
               <a [routerLink]="['/clientes_rest/form', c.id]" type="button" class="btn btn-success">Editar</a>
+              <button class="btn btn-danger" type="button" (click)="delete(c)">Eliminar</button>
             </td>
           </tr>
         </tbody>
