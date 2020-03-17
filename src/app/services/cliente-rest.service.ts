@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Cliente } from '../models/cliente';
+import { Region } from '../models/region';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +37,13 @@ export class ClienteRestService {
 
   // DELETE.
   public deleteCliente(id): Observable<Cliente> {
-    return this.http.delete<Cliente>(`${this.urlCliente}/${id}`, {headers: this.httpHeaders});s
+    return this.http.delete<Cliente>(`${this.urlCliente}/${id}`, {headers: this.httpHeaders});
+  }
+
+
+  // GET. Regiones.
+  public getRegiones(): Observable<Region[]> {
+    return this.http.get<Region[]>(`${this.urlClientes}/regiones`);
   }
 
 }

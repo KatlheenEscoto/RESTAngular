@@ -7,7 +7,7 @@
       <div class="my-3 text-left">
         <a [routerLink]="['/clientes_rest/form']" type="button" class="btn btn-primary">Crear Cliente</a>
       </div>
-      <table class="table table-hover">
+      <table class="table table-hover" *ngIf="clientes?.length > 0; else elseBlock">
         <thead class="thead-dark">
           <tr>
             <th scope="col">#</th>
@@ -15,6 +15,7 @@
             <th scope="col">Apellido</th>
             <th scope="col">CreateAt</th>
             <th scope="col">Correo</th>
+            <th scope="col">Región</th>
             <th scope="col">Acciones</th>
           </tr>
         </thead>
@@ -25,6 +26,7 @@
             <td>{{c.apellido}}</td>
             <td>{{c.createAt}}</td>
             <td>{{c.email}}</td>
+            <td>{{c.region.nombre}}</td>
             <td>
               <a [routerLink]="['/clientes_rest/form', c.id]" type="button" class="btn btn-success">Editar</a>
               <button class="btn btn-danger" type="button" (click)="delete(c)">Eliminar</button>
@@ -32,6 +34,11 @@
           </tr>
         </tbody>
       </table>
+      <ng-template #elseBlock>
+        <div class="alert alert-danger" role="alert">
+          ¡<b>NO</b> hay registros en la base de datos!
+        </div>
+      </ng-template>
       
 
     </div>
